@@ -3,7 +3,7 @@ const Bundle = require('bare-bundle')
 const unpack = require('.')
 
 test('basic', async (t) => {
-  async function writeFile(key, data, mode) {
+  async function writeFile(key) {
     if (
       key === 'file:///foo.js' ||
       key === 'file:///bar.js' ||
@@ -28,7 +28,7 @@ test('basic', async (t) => {
 })
 
 test('skip addons', async (t) => {
-  function writeFile(key, data, mode) {
+  function writeFile(key) {
     if (key === 'file:///foo.js' || key === 'file:///package.json') {
       t.pass(key)
     } else {
@@ -59,7 +59,7 @@ test('skip addons', async (t) => {
 })
 
 test('only addons', async (t) => {
-  function writeFile(key, data, mode) {
+  function writeFile(key) {
     if (key === 'file:///prebuilds/host/foo.bare') {
       t.pass(key)
     } else {
