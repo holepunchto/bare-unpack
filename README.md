@@ -11,7 +11,7 @@ npm i bare-unpack
 ```js
 const unpack = require('bare-unpack')
 
-async function writeFile(key, data, mode) {
+async function writeFile(key) {
   // Write `data` to disk or elsewhere and return the resulting path
 }
 
