@@ -1,0 +1,37 @@
+{
+  "name": "bare-unpack",
+  "version": "1.0.0",
+  "description": "Bundle unpacking for Bare",
+  "exports": {
+    ".": "./index.js",
+    "./package": "./package.json"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "npm run lint && npm run test:bare && npm run test:node",
+    "test:bare": "bare test.js",
+    "test:node": "node test.js",
+    "lint": "prettier . --check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holepunchto/bare-unpack.git"
+  },
+  "author": "Holepunch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/holepunchto/bare-unpack/issues"
+  },
+  "homepage": "https://github.com/holepunchto/bare-unpack#readme",
+  "dependencies": {
+    "bare-bundle": "^1.8.3",
+    "promaphore": "^1.0.0"
+  },
+  "devDependencies": {
+    "brittle": "^3.1.1",
+    "prettier": "^3.3.3",
+    "prettier-config-standard": "^7.0.0"
+  }
+}
