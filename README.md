@@ -12,7 +12,7 @@ npm i bare-unpack
 const unpack = require('bare-unpack')
 
 async function writeFile(key) {
-  // Write `data` to disk or elsewhere and return the resulting path
+  // Write the data for `key` to disk or elsewhere and return the resulting path
 }
 
 const repacked = await unpack(bundle, writeFile)
