@@ -1,6 +1,6 @@
 {
   "name": "bare-unpack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bundle unpacking for Bare",
   "exports": {
     ".": "./index.js",
