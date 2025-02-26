@@ -29,7 +29,7 @@ module.exports = async function unpack(bundle, opts, writeFile) {
     }
 
     if (assets === true) {
-      for (const key of bundle.assets) unpack.delete(key)
+      for (const key of bundle.assets) unpack.add(key)
     }
   }
 
