@@ -63,7 +63,7 @@ module.exports = async function unpack(bundle, opts, writeFile) {
     if (semaphore !== null) await semaphore.wait()
 
     if (unpack.has(key)) {
-      rewrites.set(key, await writeFile(key))
+      rewrites.set(key, String(await writeFile(key)))
     } else {
       repack.add(key)
     }
