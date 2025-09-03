@@ -3,7 +3,7 @@
 Bundle unpacking for Bare.
 
 ```
-npm i bare-unpack
+npm i [-g] bare-unpack
 ```
 
 ## Usage
@@ -33,6 +33,20 @@ options = {
   assets: files,
   concurrency: 0
 }
+```
+
+## CLI
+
+#### `bare-unpack [flags] <entry>`
+
+Unpack the bundle at `<entry>` to `--out` which defaults to `.`
+
+Flags include:
+
+```console
+--version|-v
+--out|-o <path>
+--help|-h
 ```
 
 ## License

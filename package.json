@@ -3,11 +3,25 @@
   "version": "1.0.3",
   "description": "Bundle unpacking for Bare",
   "exports": {
-    ".": "./index.js",
-    "./package": "./package.json"
+    "./package": "./package.json",
+    ".": "./index.js"
+  },
+  "imports": {
+    "fs": {
+      "bare": "bare-fs",
+      "default": "fs"
+    },
+    "path": {
+      "bare": "bare-path",
+      "default": "path"
+    }
+  },
+  "bin": {
+    "bare-unpack": "bin.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "bin.js"
   ],
   "scripts": {
     "test": "npm run lint && npm run test:bare && npm run test:node",
@@ -27,6 +41,9 @@
   "homepage": "https://github.com/holepunchto/bare-unpack#readme",
   "dependencies": {
     "bare-bundle": "^1.8.3",
+    "bare-fs": "^4.2.3",
+    "bare-path": "^3.0.0",
+    "paparam": "^1.8.5",
     "promaphore": "^1.0.0"
   },
   "devDependencies": {
