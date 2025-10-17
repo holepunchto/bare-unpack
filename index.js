@@ -71,7 +71,14 @@ module.exports = async function unpack(bundle, opts, writeFile) {
       for (;;) {
         key = key.substring(0, key.lastIndexOf('/'))
 
-        if (key === '' || key === '/' || key[key.length - 1] === '/') break
+        if (
+          key === '' ||
+          key === '/' ||
+          key[key.length - 1] === '/' ||
+          key[key.length - 1] === ':'
+        ) {
+          break
+        }
 
         target = path.dirname(target)
 
