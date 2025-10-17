@@ -68,16 +68,14 @@ module.exports = async function unpack(bundle, opts, writeFile) {
 
       rewrites.set(key, target)
 
-      let url = new URL(key)
-
       for (;;) {
-        url.pathname = url.pathname.substring(0, url.pathname.lastIndexOf('/'))
+        key = key.substring(0, key.lastIndexOf('/'))
 
-        if (url.pathname === '' || url.pathname === '/') break
+        if (key === '' || key === '/' || key[key.length - 1] === '/') break
 
         target = path.dirname(target)
 
-        rewrites.set(url.href, target)
+        rewrites.set(key, target)
       }
     } else {
       repack.add(key)
