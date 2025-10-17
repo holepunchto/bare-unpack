@@ -92,3 +92,41 @@ test('only addons', async (t) => {
 
   t.alike(result, expected)
 })
+
+test('directory assets', async (t) => {
+  const bundle = new Bundle()
+    .write('file:///foo.js', "const dir = require.asset('./dir')", {
+      imports: {
+        './dir': 'file:///dir'
+      }
+    })
+    .write('file:///dir/bar.txt', 'hello bar', {
+      asset: true
+    })
+    .write('file:///dir/baz.txt', 'hello baz', {
+      asset: true
+    })
+    .write('file:///package.json', '{ "name": "foo" }')
+
+  function writeFile(key) {
+    if (key === 'file:///dir/bar.txt' || key === 'file:///dir/baz.txt') {
+      t.pass(key)
+    } else {
+      t.fail(key)
+    }
+
+    return new URL(key).pathname
+  }
+
+  const result = await unpack(bundle, { files: false, assets: true }, writeFile)
+
+  const expected = new Bundle()
+    .write('file:///foo.js', "const dir = require.asset('./dir')", {
+      imports: {
+        './dir': '/dir'
+      }
+    })
+    .write('file:///package.json', '{ "name": "foo" }')
+
+  t.alike(result, expected)
+})

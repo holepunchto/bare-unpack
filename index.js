@@ -1,3 +1,4 @@
+const path = require('path')
 const Semaphore = require('promaphore')
 const Bundle = require('bare-bundle')
 
@@ -63,7 +64,21 @@ module.exports = async function unpack(bundle, opts, writeFile) {
     if (semaphore !== null) await semaphore.wait()
 
     if (unpack.has(key)) {
-      rewrites.set(key, String(await writeFile(key)))
+      let target = String(await writeFile(key))
+
+      rewrites.set(key, target)
+
+      let url = new URL(key)
+
+      for (;;) {
+        url.pathname = url.pathname.substring(0, url.pathname.lastIndexOf('/'))
+
+        if (url.pathname === '' || url.pathname === '/') break
+
+        target = path.dirname(target)
+
+        rewrites.set(url.href, target)
+      }
     } else {
       repack.add(key)
     }
