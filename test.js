@@ -4,11 +4,7 @@ const unpack = require('.')
 
 test('basic', async (t) => {
   async function writeFile(key) {
-    if (
-      key === 'file:///foo.js' ||
-      key === 'file:///bar.js' ||
-      key === 'file:///baz.js'
-    ) {
+    if (key === 'file:///foo.js' || key === 'file:///bar.js' || key === 'file:///baz.js') {
       t.pass(key)
     } else {
       t.fail(key)
@@ -47,13 +43,9 @@ test('skip addons', async (t) => {
 
   const result = await unpack(bundle, { addons: false }, writeFile)
 
-  const expected = new Bundle().write(
-    'file:///prebuilds/host/foo.bare',
-    '<native code>',
-    {
-      addon: true
-    }
-  )
+  const expected = new Bundle().write('file:///prebuilds/host/foo.bare', '<native code>', {
+    addon: true
+  })
 
   t.alike(result, expected)
 })
