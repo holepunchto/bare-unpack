@@ -1,4 +1,3 @@
-const path = require('path')
 const Semaphore = require('promaphore')
 const Bundle = require('bare-bundle')
 
@@ -71,16 +70,11 @@ module.exports = async function unpack(bundle, opts, writeFile) {
       for (;;) {
         key = key.substring(0, key.lastIndexOf('/'))
 
-        if (
-          key === '' ||
-          key === '/' ||
-          key[key.length - 1] === '/' ||
-          key[key.length - 1] === ':'
-        ) {
-          break
-        }
+        if (isTerminator(key)) break
 
-        target = path.dirname(target)
+        target = target.substring(0, target.lastIndexOf('/'))
+
+        if (isTerminator(target)) break
 
         rewrites.set(key, target)
       }
@@ -90,6 +84,10 @@ module.exports = async function unpack(bundle, opts, writeFile) {
 
     if (semaphore !== null) semaphore.signal()
   }
+}
+
+function isTerminator(input) {
+  return input === '' || input.endsWith('/') || input.endsWith(':')
 }
 
 function rewriteImportsMap(imports, rewrites) {
