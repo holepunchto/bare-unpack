@@ -91,7 +91,7 @@ function isTerminator(input) {
 }
 
 function rewriteImportsMap(imports, rewrites) {
-  if (rewrites.size === 0 || typeof imports !== 'object' || imports === null) return null
+  if (rewrites.size === 0 || typeof imports !== 'object' || imports === null) return imports
 
   return transformImportsMap(imports, (value) => rewrites.get(value) || value)
 }
