@@ -39,13 +39,14 @@ options = {
 
 #### `bare-unpack [flags] <entry>`
 
-Unpack the bundle at `<entry>` to `--out` which defaults to `.`
+Unpack the bundle at `<entry>` to `--out` which defaults to `.`. If any file in the bundle would be written outside of `--out`, nothing is written and an error is thrown, unless `--allow-escape` is passed.
 
 Flags include:
 
 ```console
 --version|-v
 --out|-o <path>
+--allow-escape
 --help|-h
 ```
 
