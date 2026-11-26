@@ -53,6 +53,7 @@ module.exports = async function unpack(bundle, opts, writeFile) {
   for (const key of repack) {
     result.write(key, bundle.read(key), {
       mode: bundle.mode(key),
+      type: bundle.type(key),
       imports: rewriteImportsMap(bundle.resolutions[key], rewrites)
     })
   }
