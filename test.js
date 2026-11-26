@@ -122,3 +122,17 @@ test('directory assets', async (t) => {
 
   t.alike(result, expected)
 })
+
+test('keep the types of repacked files', async (t) => {
+  const bundle = new Bundle()
+    .write('file:///foo.js', "const bar = require.addon('.')", { type: 'script' })
+    .write('file:///prebuilds/host/foo.bare', '<native code>', { addon: true })
+
+  const result = await unpack(
+    bundle,
+    { files: false, addons: true },
+    (key) => new URL(key).pathname
+  )
+
+  t.is(result.type('file:///foo.js'), 'script')
+})
